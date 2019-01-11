@@ -1,0 +1,33 @@
+#Sharing Directories between local to VM
+/home/awslab/aws-training
+sudo mount -t vboxsf lnttech_aws /home/awslab/aws-training
+
+#SSH
+ssh -i [key file path] [hostname]
+
+#Java Installation
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+java -version
+
+#Tomcat Installation
+mkdir ~/aws-training/programs
+cd ~/aws-training/programs
+
+curl -O https://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz
+sudo tar xzvf apache-tomcat-8*tar.gz -C ~/aws-training/programs
+cd apache-tomcat-8.5.37/bin
+sudo ./startup.sh
+
+#Update AWS CLI
+pip install awscli --upgrade --user
+
+#Configure AWS CLI
+aws configure
+AWS Access Key ID: [Enter root or iam user access key id]
+AWS Secret Access Key: [Enter root or iam user secret access key]
+Default region name: [Optional. Enter default region name e.g: ap-south-1]
+
+#Run Employee Management App
+java -jar dist/EmployeeWebApp.jar --server.port=8087 --spring.config.location=dist/application.properties
