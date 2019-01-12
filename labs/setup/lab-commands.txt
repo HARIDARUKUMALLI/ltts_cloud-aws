@@ -1,9 +1,10 @@
 #Sharing Directories between local to VM
-/home/awslab/aws-training
-sudo mount -t vboxsf lnttech_aws /home/awslab/aws-training
+#Create folder share in the VirtualBox
+cd /home/awslab/aws-training/labs
+sudo mount -t vboxsf ltts-cloud-aws /home/awslab/aws-training/labs
 
 #SSH
-ssh -i [key file path] [hostname]
+ssh -i [key file path] [username@hostname]
 
 #Java Installation
 sudo add-apt-repository ppa:webupd8team/java
@@ -29,5 +30,12 @@ AWS Access Key ID: [Enter root or iam user access key id]
 AWS Secret Access Key: [Enter root or iam user secret access key]
 Default region name: [Optional. Enter default region name e.g: ap-south-1]
 
+#Clone Git repository
+git clone https://github.com/asaravanakumar/ltts_cloud-aws.git
+
+#MySql database connection
+mysql -h <rds-dns-name> -u <username> -p
+[Enter password in the prompt]
+
 #Run Employee Management App
-java -jar dist/EmployeeWebApp.jar --server.port=8087 --spring.config.location=dist/application.properties
+java -jar dist/EmployeeWebApp.jar --server.port=8080 --spring.config.location=dist/application.properties
